@@ -41,7 +41,7 @@ class Trades extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
