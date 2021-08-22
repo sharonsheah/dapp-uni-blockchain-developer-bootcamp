@@ -1,6 +1,6 @@
 # About
 
-This project contains a decentralised exchange dapp and an ERC-20 token. This dapp is created with Ethereum smart contracts written in Solidity and a frontend build with React.
+This repository contains a decentralised exchange dapp and an ERC-20 token ($YUZU). This dapp is created with Ethereum smart contracts written in Solidity and a frontend build with React.
 
 ### Smart Contracts:
 - Token
