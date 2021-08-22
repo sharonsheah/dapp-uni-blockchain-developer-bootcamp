@@ -2,7 +2,6 @@ import React, { Component }  from 'react'
 import { connect } from 'react-redux'
 import { accountSelector } from '../store/selectors'
 
-
 class Navbar extends Component {
   render() {
     return (
