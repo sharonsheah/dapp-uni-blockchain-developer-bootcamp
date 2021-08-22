@@ -1,6 +1,25 @@
 # About
 
-This is a decentralised exchange dapp project containing Ethereum smart contracts written in Solidity and a frontend build with React.
+This project contains a decentralised exchange dapp and an ERC-20 token. This dapp is created with Ethereum smart contracts written in Solidity and a frontend build with React.
+
+Smart Contracts:
+- Token
+- Exchange
+
+Technologies/Frameworks/Libraries used:
+- Truffle
+- Ganache
+- Metamask
+- React
+- Redux
+- Bootstrap
+- Apex charts
+- Lo dash
+- 
+
+Languages used:
+- Javascript
+- Solidity
 
 # Getting Started with Create React App
 
