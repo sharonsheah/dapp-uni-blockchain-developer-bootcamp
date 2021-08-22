@@ -1,3 +1,7 @@
+# About
+
+This is a decentralised exchange dapp project containing Ethereum smart contracts written in Solidity and a frontend build with React.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
