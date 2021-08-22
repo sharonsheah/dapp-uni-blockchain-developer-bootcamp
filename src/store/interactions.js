@@ -11,6 +11,7 @@ import Exchange from '../abis/Exchange.json'
 export const loadWeb3 = (dispatch) => {
   if(typeof window.ethereum!=='undefined'){
     const web3 = new Web3(window.ethereum)
+    window.ethereum.enable().catch(error => { console.log(error) })
     dispatch(web3Loaded(web3))
     return web3
   } else {
