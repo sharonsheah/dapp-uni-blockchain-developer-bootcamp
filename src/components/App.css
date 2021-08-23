@@ -142,6 +142,7 @@
 }
 
 .card-body .price-chart .price {
+  padding-top: 10px;
   padding-left: 20px;
 }
 
