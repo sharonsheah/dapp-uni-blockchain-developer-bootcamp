@@ -6,10 +6,16 @@ import {
 	myOpenOrdersLoadedSelector,
 	myOpenOrdersSelector,
 	myFilledOrdersLoadedSelector,
+	exchangeSelector,
+	accountSelector,
+	orderCancellingSelector,
 } from "../store/selectors";
 import Spinner from "./Spinner";
+import { cancelOrder } from "../store/interactions";
 
-const showMyFilledOrders = (myFilledOrders) => {
+const showMyFilledOrders = (props) => {
+	const { myFilledOrders } = props;
+
 	return (
 		<tbody>
 			{myFilledOrders.map((order) => {
@@ -30,7 +36,9 @@ const showMyFilledOrders = (myFilledOrders) => {
 	);
 };
 
-const showMyOpenOrders = (myOpenOrders) => {
+const showMyOpenOrders = (props) => {
+	const { myOpenOrders, dispatch, exchange, account } = props;
+
 	return (
 		<tbody>
 			{myOpenOrders.map((order) => {
@@ -43,7 +51,14 @@ const showMyOpenOrders = (myOpenOrders) => {
 						<td className={`text-${order.orderTypeClass}`}>
 							{order.tokenPrice}
 						</td>
-						<td className="text-muted">x</td>
+						<td
+							className="text-muted cancel-order"
+							onClick={(e) => {
+								cancelOrder(dispatch, exchange, order, account);
+							}}
+						>
+							X
+						</td>
 					</tr>
 				);
 			})}
@@ -68,7 +83,7 @@ class MyTransactions extends Component {
 									</tr>
 								</thead>
 								{this.props.showMyFilledOrders ? (
-									showMyFilledOrders(this.props.myFilledOrders)
+									showMyFilledOrders(this.props)
 								) : (
 									<Spinner type="table" />
 								)}
@@ -84,7 +99,7 @@ class MyTransactions extends Component {
 									</tr>
 								</thead>
 								{this.props.showMyOpenOrders ? (
-									showMyOpenOrders(this.props.myOpenOrders)
+									showMyOpenOrders(this.props)
 								) : (
 									<Spinner type="table" />
 								)}
@@ -98,18 +113,16 @@ class MyTransactions extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log({
-		myFilledOrders: myFilledOrdersSelector(state),
-		showMyFilledOrders: myFilledOrdersLoadedSelector(state),
-		myOpenOrders: myOpenOrdersSelector(state),
-		showMyOpenOrders: myOpenOrdersLoadedSelector(state),
-	});
+	const myOpenOrdersLoaded = myOpenOrdersLoadedSelector(state);
+	const orderCancelling = orderCancellingSelector(state);
 
 	return {
 		myFilledOrders: myFilledOrdersSelector(state),
 		showMyFilledOrders: myFilledOrdersLoadedSelector(state),
 		myOpenOrders: myOpenOrdersSelector(state),
-		showMyOpenOrders: myOpenOrdersLoadedSelector(state),
+		showMyOpenOrders: myOpenOrdersLoaded && !orderCancelling,
+		exchange: exchangeSelector(state),
+		account: accountSelector(state),
 	};
 }
 

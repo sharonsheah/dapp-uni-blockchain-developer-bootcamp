@@ -49,3 +49,17 @@ export function allOrdersLoaded(allOrders) {
 		allOrders,
 	};
 }
+
+export function orderCancelling(orderCancelling) {
+	return {
+		type: "ORDER_CANCELLING",
+		orderCancelling,
+	};
+}
+
+export function orderCancelled(order) {
+	return {
+		type: "ORDER_CANCELLED",
+		order,
+	};
+}
