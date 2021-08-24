@@ -237,7 +237,6 @@ class Balance extends Component {
 			<div className="card bg-dark text-white">
 				<div className="card-header">Balance</div>
 				<div className="card-body">
-					{console.log(this.props.balancesLoading)}
 					{this.props.showForm ? showForm(this.props) : <Spinner />}
 				</div>
 			</div>

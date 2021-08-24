@@ -57,11 +57,6 @@ class PriceChart extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log({
-		priceChartLoaded: priceChartLoadedSelector(state),
-		priceChart: priceChartSelector(state),
-	});
-
 	return {
 		priceChartLoaded: priceChartLoadedSelector(state),
 		priceChart: priceChartSelector(state),
