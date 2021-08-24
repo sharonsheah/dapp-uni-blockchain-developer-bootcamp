@@ -1,4 +1,4 @@
-import { ETHER_ADDRESS } from '../src/helpers'
+import { ETHER_ADDRESS } from "../src/helpers";
 
 const Token = artifacts.require("Token");
 const Exchange = artifacts.require("Exchange");
