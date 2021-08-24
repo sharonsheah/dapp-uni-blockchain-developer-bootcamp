@@ -6,6 +6,7 @@ import MyTransactions from "./MyTransactions";
 import OrderBook from "./OrderBook";
 import PriceChart from "./PriceChart";
 import Trades from "./Trades";
+import Balance from "./Balance";
 
 class Content extends Component {
 	constructor(props) {
@@ -14,28 +15,17 @@ class Content extends Component {
 	}
 
 	async loadBlockchainData(props) {
-		const { exchange, dispatch } = props
+		const { exchange, dispatch } = props;
 
 		await loadAllOrders(exchange, dispatch);
-		await subscribeToEvents(exchange, dispatch)
+		await subscribeToEvents(exchange, dispatch);
 	}
 
 	render() {
 		return (
 			<div className="content">
 				<div className="vertical-split">
-					<div className="card bg-dark text-white">
-						<div className="card-header">Card Title</div>
-						<div className="card-body">
-							<p className="card-text">
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</p>
-							<a href="/#" className="card-link text-warning">
-								Card link
-							</a>
-						</div>
-					</div>
+					<Balance />
 					<div className="card bg-dark text-white">
 						<div className="card-header">Card Title</div>
 						<div className="card-body">
