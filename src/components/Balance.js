@@ -1,28 +1,28 @@
 import React, { Component } from "react";
-import { Spinner } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Tab, Tabs } from "react-bootstrap";
+import { Tabs, Tab } from "react-bootstrap";
+import Spinner from "./Spinner";
 import {
 	loadBalances,
 	depositEther,
+	depositToken,
 	withdrawEther,
-  depositToken,
-  withdrawToken
+	withdrawToken,
 } from "../store/interactions";
 import {
-	web3Selector,
 	exchangeSelector,
 	tokenSelector,
 	accountSelector,
+	web3Selector,
 	etherBalanceSelector,
 	tokenBalanceSelector,
 	exchangeEtherBalanceSelector,
 	exchangeTokenBalanceSelector,
 	balancesLoadingSelector,
 	etherDepositAmountSelector,
-  etherWithdrawAmountSelector,
+	etherWithdrawAmountSelector,
 	tokenDepositAmountSelector,
-  tokenWithdrawAmountSelector,
+	tokenWithdrawAmountSelector,
 } from "../store/selectors";
 import {
 	etherDepositAmountChanged,
@@ -30,22 +30,21 @@ import {
 	tokenDepositAmountChanged,
 	tokenWithdrawAmountChanged,
 } from "../store/actions";
-
 const showForm = (props) => {
 	const {
+		dispatch,
+		exchange,
+		web3,
+		account,
 		etherBalance,
 		tokenBalance,
 		exchangeEtherBalance,
 		exchangeTokenBalance,
-		dispatch,
 		etherDepositAmount,
-    etherWithdrawAmount,
+		token,
 		tokenDepositAmount,
-    tokenWithdrawAmount,
-		exchange,
-		account,
-		web3,
-    token,
+		etherWithdrawAmount,
+		tokenWithdrawAmount,
 	} = props;
 
 	return (
@@ -68,7 +67,7 @@ const showForm = (props) => {
 					</tbody>
 				</table>
 
-        {/* Deposit Ether form */}
+				{/* Deposit Ether form */}
 				<form
 					className="row pb-4"
 					onSubmit={(event) => {
@@ -104,12 +103,19 @@ const showForm = (props) => {
 					</tbody>
 				</table>
 
-        {/* Deposit token form */}
+				{/* Deposit token form */}
 				<form
 					className="row"
 					onSubmit={(event) => {
 						event.preventDefault();
-						depositToken(dispatch, exchange, web3, token, tokenDepositAmount, account);
+						depositToken(
+							dispatch,
+							exchange,
+							web3,
+							token,
+							tokenDepositAmount,
+							account
+						);
 					}}
 				>
 					<div className="col-12 col-sm pr-sm-2">
@@ -149,7 +155,7 @@ const showForm = (props) => {
 					</tbody>
 				</table>
 
-        {/* Withdraw Ether form */}
+				{/* Withdraw Ether form */}
 				<form
 					className="row pb-4"
 					onSubmit={(event) => {
@@ -196,7 +202,14 @@ const showForm = (props) => {
 					className="row"
 					onSubmit={(event) => {
 						event.preventDefault();
-						withdrawToken(dispatch, exchange, web3, token, tokenWithdrawAmount, account);
+						withdrawToken(
+							dispatch,
+							exchange,
+							web3,
+							token,
+							tokenWithdrawAmount,
+							account
+						);
 					}}
 				>
 					<div className="col-12 col-sm pr-sm-2">
@@ -228,7 +241,7 @@ class Balance extends Component {
 	}
 
 	async loadBlockchainData() {
-		const { dispatch, exchange, web3, token, account } = this.props;
+		const { dispatch, web3, exchange, token, account } = this.props;
 		await loadBalances(dispatch, web3, exchange, token, account);
 	}
 
