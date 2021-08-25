@@ -1,8 +1,9 @@
-import { ETHER_ADDRESS } from "../src/helpers";
-
+// Contracts
 const Token = artifacts.require("Token");
 const Exchange = artifacts.require("Exchange");
 
+// Utils
+const ETHER_ADDRESS = "0x0000000000000000000000000000000000000000"; // Ether token deposit address
 const ether = (n) => {
 	return new web3.utils.BN(web3.utils.toWei(n.toString(), "ether"));
 };
@@ -26,10 +27,10 @@ module.exports = async function (callback) {
 		const exchange = await Exchange.deployed();
 		console.log("Exchange fetched", exchange.address);
 
-		// Give tokens to accounts[1]
+		// Give tokens to account[1]
 		const sender = accounts[0];
 		const receiver = accounts[1];
-		let amount = web3.utils.toWei("10000", "ether");
+		let amount = web3.utils.toWei("10000", "ether"); // 10,000 tokens
 
 		await token.transfer(receiver, amount, { from: sender });
 		console.log(`Transferred ${amount} tokens from ${sender} to ${receiver}`);
@@ -38,9 +39,8 @@ module.exports = async function (callback) {
 		const user1 = accounts[0];
 		const user2 = accounts[1];
 
-		// User 1 Deposits Ether
-		amount = 1;
-		await exchange.depositEther({ from: user1, value: ether(amount) });
+		// User .1 Deposits Ether
+		await exchange.depositEther({ from: user1, value: ether(0.1) });
 		console.log(`Deposited ${amount} Ether from ${user1}`);
 
 		// User 2 Approves Tokens
@@ -162,8 +162,9 @@ module.exports = async function (callback) {
 			// Wait 1 second
 			await wait(1);
 		}
-	} catch (err) {
-		console.log(err);
+	} catch (error) {
+		console.log(error);
 	}
+
 	callback();
 };
