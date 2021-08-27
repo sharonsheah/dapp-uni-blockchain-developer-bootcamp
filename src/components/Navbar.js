@@ -10,7 +10,7 @@ class Navbar extends Component {
 					<span role="img" aria-label="Yuzu emoji">
 						🍋
 					</span>{" "}
-					YuzuSwap
+					YuzuDex
 				</a>
 				<button
 					className="navbar-toggler"
