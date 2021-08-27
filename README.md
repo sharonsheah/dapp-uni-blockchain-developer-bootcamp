@@ -1,6 +1,6 @@
 # About
 
-This repository contains a decentralised exchange dapp and an ERC-20 token ($YUZU). This dapp is created with Ethereum smart contracts written in Solidity and a frontend build with React.
+This repository contains a decentralised exchange dapp and an ERC-20 token ($YUZU). This dapp is created with Ethereum smart contracts written in Solidity and a frontend build with React and Redux.
 
 ### Smart Contracts:
 - Token
@@ -20,7 +20,19 @@ This repository contains a decentralised exchange dapp and an ERC-20 token ($YUZ
 - Javascript
 - Solidity
 
-# Getting Started with Create React App
+# Getting Started
+
+This decentralised token exchange can be accessed [here](https://yuzu-dex.surge.sh/)
+
+### Steps
+1. Download Metamask
+2. Create an account on Metamask
+3. Select the Rinkeby Test Network
+4. Get some testnet Ether here https://faucet.rinkeby.io/ (You'll need to tweet your address and paste your tweet url in the faucet website)
+5. Go to Yuzu Dex and connect your Metamask
+6. Start playing around with the YUZU/ETH pair
+
+# Getting Started (Locally)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
